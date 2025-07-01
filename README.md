@@ -6,12 +6,14 @@ API REST desenvolvida em Go (Gin) para gerenciar lista de presentes, confirmaç�
 
 -   [Go](https://golang.org/)
 -   [Gin](https://gin-gonic.com/)
--   [SQLite](https://www.sqlite.org/)
+-   [PostgreSQL](https://www.postgresql.org/) (via [Supabase](https://supabase.com/))
+-   [GORM](https://gorm.io/) - ORM para Go
 
 ## 📋 Pré-requisitos
 
 -   Go 1.16 ou superior
 -   Docker e Docker Compose (opcional)
+-   Conta no Supabase (para banco de dados)
 
 ## 🔧 Instalação
 
@@ -91,7 +93,11 @@ Authorization: Bearer <admin_password>
 
 -   `PORT` - Porta do servidor (padrão: 8080)
 -   `ADMIN_PASSWORD` - Senha para acesso administrativo
--   `DB_PATH` - Caminho para o banco de dados SQLite
+-   `DB_HOST` - Host do banco de dados Supabase
+-   `DB_PORT` - Porta do banco de dados (padrão: 5432)
+-   `DB_USER` - Usuário do banco de dados
+-   `DB_PASSWORD` - Senha do banco de dados
+-   `DB_NAME` - Nome do banco de dados
 
 ## 📦 Estrutura do Projeto
 

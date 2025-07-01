@@ -1,0 +1,531 @@
+{
+    "info": {
+        "_postman_id": "e9b3c2a1-5d4f-4b8a-9c6d-7e8f9a0b1c2d",
+        "name": "Chá de Casa Nova API",
+        "description": "API para gerenciamento de lista de presentes, confirmações e mensagens do chá de casa nova",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Health Check",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/health",
+                    "host": ["{{base_url}}"],
+                    "path": ["health"]
+                }
+            }
+        },
+        {
+            "name": "Itens",
+            "item": [
+                {
+                    "name": "Listar Itens (Público)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/items",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "items"]
+                        }
+                    }
+                },
+                {
+                    "name": "Obter Item (Público)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/items/:id",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "items", ":id"],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Resgatar Item",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"nome\": \"João Silva\",\n    \"email\": \"joao@email.com\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/items/:id/resgate",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "items", ":id", "resgate"],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Cancelar Resgate",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/items/:id/cancela-resgate",
+                            "host": ["{{base_url}}"],
+                            "path": [
+                                "api",
+                                "v1",
+                                "items",
+                                ":id",
+                                "cancela-resgate"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Listar Itens (Admin)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/items",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "admin", "items"]
+                        }
+                    }
+                },
+                {
+                    "name": "Criar Item",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"nome\": \"Novo Item\",\n    \"descricao\": \"Descrição do novo item\",\n    \"categoria\": \"Cozinha\",\n    \"preco\": 99.90,\n    \"imagem_url\": \"https://exemplo.com/imagem.jpg\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/items",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "admin", "items"]
+                        }
+                    }
+                },
+                {
+                    "name": "Atualizar Item",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"nome\": \"Item Atualizado\",\n    \"descricao\": \"Descrição atualizada\",\n    \"categoria\": \"Cozinha\",\n    \"preco\": 149.90,\n    \"imagem_url\": \"https://exemplo.com/imagem.jpg\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/items/:id",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "admin", "items", ":id"],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Deletar Item",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/items/:id",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "admin", "items", ":id"],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Mensagens",
+            "item": [
+                {
+                    "name": "Listar Mensagens Aprovadas",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/mensagens",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "mensagens"]
+                        }
+                    }
+                },
+                {
+                    "name": "Criar Mensagem",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"nome\": \"Maria Silva\",\n    \"mensagem\": \"Felicidades ao casal!\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/mensagens",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "mensagens"]
+                        }
+                    }
+                },
+                {
+                    "name": "Listar Todas Mensagens (Admin)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/mensagens",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "admin", "mensagens"]
+                        }
+                    }
+                },
+                {
+                    "name": "Aprovar Mensagem",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/mensagens/:id/aprovar",
+                            "host": ["{{base_url}}"],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "mensagens",
+                                ":id",
+                                "aprovar"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Deletar Mensagem",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/mensagens/:id",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "admin", "mensagens", ":id"],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Confirmações",
+            "item": [
+                {
+                    "name": "Criar Confirmação",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"nome\": \"Pedro Santos\",\n    \"quantidade_adultos\": 2,\n    \"quantidade_criancas\": 1\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/confirmacoes",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "confirmacoes"]
+                        }
+                    }
+                },
+                {
+                    "name": "Listar Confirmações (Admin)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/confirmacoes",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "admin", "confirmacoes"]
+                        }
+                    }
+                },
+                {
+                    "name": "Atualizar Confirmação",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"nome\": \"Pedro Santos\",\n    \"quantidade_adultos\": 3,\n    \"quantidade_criancas\": 2\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/confirmacoes/:id",
+                            "host": ["{{base_url}}"],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "confirmacoes",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Deletar Confirmação",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/confirmacoes/:id",
+                            "host": ["{{base_url}}"],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "confirmacoes",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Estatísticas",
+            "item": [
+                {
+                    "name": "Estatísticas Básicas",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/stats",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "stats"]
+                        }
+                    }
+                },
+                {
+                    "name": "Estatísticas Detalhadas (Admin)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/stats/detalhadas",
+                            "host": ["{{base_url}}"],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "stats",
+                                "detalhadas"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Evento",
+            "item": [
+                {
+                    "name": "Obter Informações do Evento",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/evento",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "evento"]
+                        }
+                    }
+                },
+                {
+                    "name": "Atualizar Informações do Evento (Admin)",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"titulo\": \"Chá de Casa Nova\",\n    \"data\": \"2024-03-15T18:00:00Z\",\n    \"local\": \"Rua Exemplo, 123\",\n    \"descricao\": \"Venha celebrar conosco!\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/evento",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "admin", "evento"]
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:8080",
+            "type": "string"
+        },
+        {
+            "key": "admin_token",
+            "value": "sua_senha_admin",
+            "type": "string"
+        }
+    ]
+}
